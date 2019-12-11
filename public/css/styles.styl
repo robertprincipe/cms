@@ -10,12 +10,15 @@ body
     border 1px solid #d6d6d6
     border-radius 8px
     width 500px
-    position absolute
     overflow hidden
     .btn-success
         background-color #3848C8
         border none
         &:hover
+            background-color #3848C8
+        &:focus
+            background-color #3848C8
+        &:active
             background-color #3848C8
     .form-control
         &:focus
@@ -46,10 +49,13 @@ body
 .mt-16
     margin-top 16px
 
+.center
+    display flex
+    justify-content center
+    align-items center
+    height 100vh
+    width 100vw
+
 .center-x
     display flex
     justify-content center
-.box-login
-    top calc(50% - 177.26px)
-.box-register
-    top calc(50% - 306.26px)
