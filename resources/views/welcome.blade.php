@@ -69,6 +69,9 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/logout') }}" onclick="event.preventDefault(); formLogout.submit()">Cerrar sesión</a>
+                        {!! Form::open(['url' => '/logout', 'name' => 'formLogout']) !!}
+                        {!! Form::close() !!}
                     @else
                         <a href="{{ route('login') }}">Login</a>
 

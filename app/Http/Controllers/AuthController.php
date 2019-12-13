@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Validator;
+use Validator, Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 
@@ -22,6 +22,34 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    public function login(Request $request) {
+        $rules = [
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ];
+
+        $messages = [
+            'email.required' => 'Su correo electrónico es requerido.',
+            'email.email' => 'El formato de correo electrónico es invalido',
+            'password.required' => 'Por favor escriba una contraseña',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails())
+            return back()->withErrors($validator)->with('message', 'Se produjo un error')
+            ->with('typealert', 'danger');
+
+        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')], true)):
+            return redirect('/');
+        endif;
+
+        return back()->with('message', 'Correo electrónico o contraseña es errónea')
+            ->with('typealert', 'danger');
+    }
+
     public function register(Request $request) {
         $rules = [
             'name' => 'required',
@@ -37,7 +65,7 @@ class AuthController extends Controller
             'email.required' => 'Su correo electrónico es requerido.',
             'email.email' => 'El formato de correo electrónico es invalido',
             'email.unique' => 'Ua existe un usuario registrado con este correo electrónico',
-            'password' => 'Por favor escriba una contraseña',
+            'password.required' => 'Por favor escriba una contraseña',
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
             'confirm-password.required' => 'Es necesario confirmar la contraseña.',
             'confirm-password.min' => 'La confirmación de la contraseña debe tener al menos 8 caracteres.',
@@ -59,5 +87,11 @@ class AuthController extends Controller
         if ($user->save()):
             return redirect('/login')->with('message', 'Su usuario se creo con éxito, puedes iniciar sesión.')->with('typealert', 'success');
         endif;
+    }
+
+    public function logout() {
+        Auth::logout();
+
+        return redirect('/login');
     }
 }
