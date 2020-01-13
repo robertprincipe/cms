@@ -84,7 +84,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <ul>
+                        <li>{{ Auth::user()->name }}</li>
+                        <li>{{ Auth::user()->lastname }}</li>
+                        <li>{{ Auth::user()->role }}</li>
+                        <li>{{ Auth::user()->email }}</li>
+                    </ul>
                 </div>
 
                 <div class="links">

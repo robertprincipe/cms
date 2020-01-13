@@ -1,0 +1,95 @@
+:root
+    --color-primary #4c7cf3
+
+
+body
+    font-size 14px
+    background-color #f5f6fa
+    font-family 'Roboto', sans-serif
+h2, h3, h4, h5, ul, body, html
+    padding 0
+    margin 0
+
+.wrapper
+    min-height 100vh
+    overflow hidden
+    display flex
+    .col1
+        position relative
+        z-index 999
+        width 17%
+    .col2
+        width 83%
+
+.sidebar
+    background-color #fff
+    min-height 100vh
+    .section-top
+        background-color var(--color-primary)
+        box-shadow 0 .5rem 1rem rgba(0, 0, 0, .15)
+    .logo
+        display block
+        margin 0 auto
+        padding-top 24px
+        width 60%
+    .user
+        color #fff !important
+        padding 16px
+        a
+            color #fff
+
+    .main
+        display block
+        margin-top 8px
+        ul
+            li
+                margin-bottom 4px
+                a
+                    color #8998AC !important
+                    display block
+                    font-size 1.1rem
+                    padding 12px 16px
+                    transition all .3s ease
+                    i
+                        margin-right 10px
+                    &:hover
+                        background-color var(--color-primary)
+                        box-shadow 0 .5rem 1rem rgba(0, 0, 0, .15)
+                        color #fff !important
+                        text-decoration none
+
+.navbar
+    background-color var(--color-primary)
+    a
+        color #fff !important
+
+.page
+    padding-top 16px
+    padding-bottom 16px
+    .breadcrumb
+        background-color #fff
+        box-shadow 0 .5rem rgba(0, 0, 0, .1) !important
+        .breadcrumb-item
+            a
+                &:hover
+                    text-decoration none !important
+    .panel
+        background-color #fff
+        border-radius 6px
+        border-bottom 2px solid var(--color-primary)
+        width 100%
+        .header
+            border-bottom 1px solid #e8e8e8
+            h2.title
+                display inline-block
+                color #19213d
+                font-size 1.1em
+                padding 12px 16px
+        .inside
+            padding 16px
+.opts
+    a
+        border-radius 4px
+        border 1px solid #dedede
+        display inline-block
+        padding 8px 12px
